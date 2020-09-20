@@ -1,0 +1,55 @@
+Tensorflow中Tensor就是张量（区别于变量）
+首先要学会创建Tensor
+1.tf.constant(内容,dtype=tf.int64) 自定义
+2.tf.convert_to_tensor(a,dtype=)  由numpy创建
+3.tf.zeros tf.ones tf.fill  快速创建方法
+4.tf.random.normal(维度，mean=, stddev=)  正态分布随机数
+ tf.random.truncated_normal() 截断式正态分布
+5.tf.random.uniform(维度，minval=,maxval=)  生成随机数minval~manval之间
+
+
+查看Tensor的属性:
+a.dtype
+a.shape
+查看具体的值： with tf.Session():
+
+常用函数:
+tf.cast(a,dtype) 强制类型转换
+
+关于axis：
+axis=0 横跨行  down
+axis=1 横跨列  across
+配合各种降维操作: tf.reduce_min max sum
+tf.argmax(a,axis=)  返回最大值索引
+
+Tensorflow中的可训练标记 tf.Variable(Tensor)
+
+数学运算
+tf.add tf.subtract multiply divide 
+square pow sqrt
+matmul
+
+生成输入特征/标签对，构建数据集
+data = tf.data.Dataset.from_tensor_slices((features,label)) numpy和tensor格式都可带入
+
+
+
+with结构记录计算过程，gradient求出张量的梯度
+with tf.GradientTape() as tape:
+    x = tf.Variable(tf.constant(3.0))
+    y = tf.pow(x, 2)
+grad = tape.gradient(y, x)   #tap就相当于tf.GradientTape.gradient
+print(grad)
+
+
+one-hot encoding
+tf.one_hot(带转换数据，depth=几分类)
+
+tf.nn.softmax(x) 使输出符合概率分布
+变量自减操作:
+w.assign_sub(1)
+
+
+
+
+
